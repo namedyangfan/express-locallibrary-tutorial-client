@@ -1,35 +1,6 @@
 import React, { Component } from 'react';
 import * as author_api from '.././api/author'
-
-class Cell extends Component {
-  render(){
-    return(
-      <td>{this.props.row}</td>
-    )
-  }
-}
-
-class Row extends Component {
-  render(){
-    const author = this.props.author
-    return(
-      <tr>
-        <td>{author.first_name}</td>
-        <td>{author.family_name}</td>
-        <td>
-          <ul>
-          {
-            author.book.map((book, index)=>( 
-              <li key={index}><a>{book.title}</a></li>
-            )) 
-          }
-            <li><a className='btn'>add Book</a></li>
-          </ul>
-        </td>
-      </tr>
-    )
-  }
-}
+import Row from './row'
 
 export default class AuthorTable extends Component {
   constructor(props) {
@@ -99,7 +70,7 @@ export default class AuthorTable extends Component {
                 <tbody>
                   {
                     authors.map( (author, key) => 
-                      <Row author={author} key={key}/> 
+                      <Row author={author} key={key} getAuthors={this.getAuthors}/> 
                     )
                   }
                   <tr>
